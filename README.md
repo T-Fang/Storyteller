@@ -2,6 +2,12 @@
 
 Marcus | Pan Yongjing | Tian Fang
 
+![img](https://lh6.googleusercontent.com/rWitNlR63COVmNudwHPVJ4IY8-dam-2LJG_F7b7x8Gh-YXid__KG5HRUHesqq4EhMsDdpKrXWsh19Ij4wEx8uhNap7ykh8mjkabR2uQgMboCVGkhCOXzkPYJr-vVYJxcjafMIP9u)
+
+![img](https://lh4.googleusercontent.com/rrCJ24Jka1DUYou1gTB7paO2Ud8gEkd_g5vY08MnKln2pmlaiP6oupVb3TAEoaqiNM4WS989pH7ijVPhgTgpRtqQfXFO4CZZPuLFYIjl43JuJ3JDrf3padBZdZbScoVc5FJR4jNL)
+
+![img](https://lh5.googleusercontent.com/sE3qnz2zQN0la0VsOTUdWUlWXCd4B8PBk9XKNeH8gE5ev-2RVelQOo2jkaut_lijFe81QYG7iyXR_vMJe6Y2EvMIOjyMgV12hNSEuzDVKF3wfsNRBH2XTfcIrxjbAbTRwA7UgHHK)
+
 ## Overview
 
 Traditionally in the film industry, there is normally a drawer/designer who is in charge of storyboard design. However, hiring a dedicated person for storyboards is not always feasible for small-budget or personal projects. Additionally, more independent filmmakers are emerging nowadays as film equipment is getting more accessible. Therefore, we want to come up with an app to help filmmakers and videographers to design their storyboards with ease using their iPads. The users can effortlessly draw rough sketches to describe their shots and order different shots in various scenes using our app.

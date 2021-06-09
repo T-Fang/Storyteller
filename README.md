@@ -131,7 +131,8 @@ Environmental Assumptions:  The app will be run on an iPad with iOS 14.4
 
 12. Ungrouping Layers
 
-13. - Select a layer
+    - Select a layer
+
     - Click the Button to the right of “Group” button (“Ungroup” button)
 
 

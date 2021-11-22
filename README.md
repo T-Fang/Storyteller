@@ -210,16 +210,43 @@ The Project View Controller is responsible for the project folder interface that
 The collection view cells of Project/Scene navigator are omitted as they are just standard dynamic collection view cells. For views in the drawing part, they mimic the layer representation in the Model: ShotView contains an array of `LayerView` which is a protocol to be implemented by concrete `LayerView`. We also have another simple protocol `SelectableView` for Buttons that change their appearance when the state changes.
 
 
-#### **Interesting Design Issues (Design Considerations mentioned before will not be repeated)**
+#### **Interesting Design Issues**
 
-**Design Consideration 1 - _how to save to storage and generate shot thumbnail _**
+**Design Consideration 1 - _how to save to storage and generate shot thumbnail_**
 
 As soon as we add support for image layers, the speed problem for thumbnail generation and storage saving emerges. Specifically, when there are many complicated shots, synchronously saving them to storage or generating all thumbnails could take several seconds, which is unacceptable for users. Hence, we’ve created two separate DispatchQueue to cope with this issue. See “Module Structure” for more details.
 
-**Design Consideration 2 - _how to store and update the transform_**
+**Design Consideration 2 - _how to represent different types of layers_ (merged results from sprint 1-3)**
+
+1. Option 1 - Use separate protocols or use inheritance: one way to solve the problem is using separate protocols: create a protocol for each layer (e.g. DrawingLayer, TextLayer, ImageLayer) and let corresponding layer classes implement those protocols; another similar way is using inheritance: we have a general Layer class, and have different subclass for each layer(e.g DrawingLayer extends Layer)
+    1. Pros
+        1. each protocol/inheritance will only need to implement methods related to one layer
+        2. layers are not forced to implement any methods or contain any attributes that are not related to the layers (e.g. a DrawingLayer don't have to have an attribute named text)
+    2. Cons
+        1. the hierarchy could be complicated after more types of layers are added
+        2. need to create new protocols/subclasses for all additional layers
+        3. still need to be downcasted (using as?) if some operations require the specific type of the layer (e.g. when the user tap on the screen, text layer and drawing layer should respond differently)
+2. Option 2 - Use enumeration and composition (current choice): Another approach is to use an enumeration LayerType and directly embed it in the Layer class
+    1. Pros
+        1. avoids over-complex hierarchy
+        2. a layer is guaranteed to have a layer type
+        3. easier to add more layers
+    2. Cons
+        1. could result in many switch cases
+        2. relies heavily on the LayerType as every shape has the same types of attributes (e.g. PKDrawing AND text). If the LayerType is not checked, a drawing layer might be misused as a text layer
+3. Option 3 - Use Decorator Pattern: we can also make Layer an interface and have  ConcreteLayer and LayerDecorator classes that implement the Layer, where LayerDecorator will store a Layer and behaves like a Layer by calling methods of the stored Layer. In this way, we can have layers stack on top of each other, which is perfect for merging layers
+    1. Pros
+        1. very suitable for merging layers into one layer
+        2. attribute/method will automatically change after putting Decorators on layers (e.g. after merging a drawing layer with an image layer, the bounding box of the result layer will be a bigger one that surrounds both the image and the drawing)
+    2. Cons
+        1. need to have a basic ConcreteLayer. However, there is no layer suitable for this job (it cannot be layers like drawing layer because image layer’s base ConcreteLayer should not be a drawing layer; it also makes no sense to make the ConcreteLayer a layer with no attributes)
+        2. hard to delete a specific Decorator from the stacks of Decorators (e.g. the user only want to delete the image in a merged layer, but not the drawing)
+        3. one has to pay extra attention to the order of the Decorators stack, which introduce another layer of complexity
+4. Option 4 - Use Decorator Pattern (current choice): We finally came up with an elegant solution to layer modeling by using the **composite** pattern together with the **visitor** pattern. See “Runtime Structure” for more details.
+
+**Design Consideration 3 - _how to store and update the transform_**
 
 In sprint 2, we spent a lot of time on getting layer transformation to work properly. Two major difficult tasks encountered are applying transform around the correct anchor point and updating `PKCanvasView` (`PKCanvasView will refresh every time its PKDrawing is transformed`). To solve the issue of anchor point, we decided to make the anchor point the center point of the canvas. Moreover, `PKCanvasView` is only refreshed at the end of transform gestures. See “Runtime Structure” for more details.
-
 
 ### **Runtime Structure** 
 

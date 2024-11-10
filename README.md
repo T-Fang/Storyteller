@@ -1,4 +1,4 @@
-# CS3217 Project Sprint 1 Report - Storyteller
+# Storyteller - Technical Report
 
 Marcus | Pan Yongjing | Tian Fang
 

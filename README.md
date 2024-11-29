@@ -101,6 +101,7 @@ Environmental Assumptions:  The app will be run on an iPad with iOS 14.4
    - You can untick the checkbox in each layer to hide it
    - You can click Edit and drag layers to reorder them
    - You can click Edit, select layers, and delete them
+   - You can click Edit, select a layer and click on the Duplicate button on the right of the Edit button to duplicate the layer
 
 7. Resizing, rotating, and translating canvas/layer
    ![img](https://lh5.googleusercontent.com/KgWxvocWzAPzBHfDmkkJG1vWeGq9stdkT4WgNqThRmzsR-2KjMU86qDENKekgXlgLk1ua2nmw_GKsWPj_piCACXJU-QQiQjpCy1Sq2iHHwaS7g4t8UIjs1rNXLhgBCKbNl3I16L5)
@@ -131,15 +132,13 @@ Environmental Assumptions:  The app will be run on an iPad with iOS 14.4
 11. Grouping Layers
 
     - Click Edit
-
     - Select layers you wish to group
-    - Select the button to the right of Edit (“Group” button)
+    - Click the Group button (second button after the Edit button) to group the selceted layers
 
 12. Ungrouping Layers
-
-    - Select a layer
-
-    - Click the Button to the right of “Group” button (“Ungroup” button)
+    - Click Edit
+    - Select a group layer
+    - Click the Ungroup button (third button after the Edit button) to ungroup the layers
 
 
 
